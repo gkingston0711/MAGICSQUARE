@@ -9,7 +9,7 @@ def colSum(matrix,col):
     for i in range(len(matrix)):
         Sum = Sum + matrix[i][col]
     return Sum
-
+#test test
 def diagSum(matrix):
     Sum = 0
     for i in range(len(matrix[0])):
