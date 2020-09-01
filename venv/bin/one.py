@@ -1,27 +1,40 @@
-def rowSum(matrix, row):
-    Sum = 0
+
+def sumRow(matrix, row):
+    """
+        Return the sum of the values in the given row
+    """
+    sum_t = 0
     for i in range(len(matrix[row])):
-        Sum = Sum + matrix[row][i]
-    return Sum
+        sum_t = sum_t + matrix[row][i]
+    return sum_t
 
-def colSum(matrix,col):
-    Sum = 0
+def sumCol(matrix, col):
+    """
+        Return the sum of the valus in the given col
+    """
+    sum_t = 0
     for i in range(len(matrix)):
-        Sum = Sum + matrix[i][col]
-    return Sum
-#test test
-def diagSum(matrix):
-    Sum = 0
-    for i in range(len(matrix[0])):
-        Sum = Sum + matrix[i][i]
-    return Sum
+        sum_t = sum_t + matrix[i][col]
+    return sum_t
 
-def oppDiagSum(matrix):
-    Sum = 0
-    Length = len(matrix)
-    for i in range(Length):
-        Sum = Sum + matrix[Length - 1 - i][i]
-    return Sum
+def sumMainDiag(matrix):
+    """
+        Return the sum of the values in the main diagonal
+    """
+    sum_t = 0
+    for i in range(len(matrix[0])):
+        sum_t = sum_t + matrix[i][i]
+    return sum_t
+
+def sumReverseDiag(matrix):
+    """
+        Return the sum of the value in the reverse diagonal
+    """
+    sum_t = 0
+    len_t = len(matrix)
+    for i in range(len_t):
+        sum_t = sum_t + matrix[len_t - 1 - i][i]
+    return sum_t
 
 def calcAllSum(matrix):
     """
@@ -37,7 +50,6 @@ def calcAllSum(matrix):
 
     print('sum of main diagonal: ', sumMainDiag(matrix))
     print('sum of other diagonal: ', sumReverseDiag(matrix))
-
 
 def isMagic(matrix):
     """
@@ -77,8 +89,8 @@ def printMatrix(matrix):
     """
     for row in matrix:
         for num in row:
-            print(num, " ", end)
-        print()
+            print num
+
 
 def createRow(row_str):
     """
@@ -92,41 +104,36 @@ def createRow(row_str):
             row.append(int(num))
     return row
 
-
-
 def main():
-    Count = 0
-    fileOpen = open('square.txt','r')
 
-    while True:
+    inFile = open('square.txt', 'r')
+    counter = 0
+    while(1):
         matrix = []
-        size = fileOpen.readline()
+        # Read the size of the matrix
+        size = inFile.readline()
         size = int(size.rstrip('\n'))
-        if size <= 0:
+        if size == -1:
             return
-        print('the size of the square: ', size)
-        Count +=1
-
-        for j in range(size):
-            rowStr = fileOpen.readline()
-            row = createRow(rowStr)
+        print ('The size of the square is: ', size)
+        counter += 1
+        for i in range(size):
+            row_str = inFile.readline()
+            row = createRow(row_str)
             matrix.append(row)
-
-        print('****square %d*****' %Count)
+        print('***** Square  %d *****' % counter)
         printMatrix(matrix)
         calcAllSum(matrix)
-
-        if(isMagic(matrix)==True):
-            print('IT IS MAGIC SQUARE')
+        # Check matrix is magic ?
+        if (isMagic(matrix)):
+            print ('It is a magic square')
         else:
-            print('IT IS NOT A MAGIC SQUARE')
+            print ('It is a normal square')
 
         print()
 
 
 main()
-
-
 
 
 
