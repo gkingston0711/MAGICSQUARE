@@ -31,7 +31,10 @@ def sumReverseDiag(matrix):
     for row in range(Length):
         Sum = Sum + matrix[Length - 1 - i][row]
     return Sum
-
+"""
+This function was also taken from external source, in my origianl version i did all calculations 
+inside main
+"""
 def calcAllSum(matrix):
 
     for i in range(len(matrix)):
@@ -45,6 +48,11 @@ def calcAllSum(matrix):
     print('sum diagonal: ', sumMainDiag(matrix))
     print('sum of other diagonal: ', sumReverseDiag(matrix))
 
+
+"""
+This "ismagic" function is same as the solution sheet. In my original  I did this and calculate the sum all inside my
+main, which got a little messy
+"""
 def isMagic(matrix):
 
     sum_t = sumRow(matrix, 0)
@@ -64,6 +72,7 @@ def isMagic(matrix):
     if sum_t != main_diagonal:
         return False
 
+    # Check reverse diagonal
     reverse_diagonal = sumReverseDiag(matrix)
     if sum_t != reverse_diagonal:
         return False
